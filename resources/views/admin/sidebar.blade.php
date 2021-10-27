@@ -26,9 +26,11 @@
                 <a href="{{ url('/admin/products') }}"><i class="fas fa-birthday-cake"></i> Productos</a>
             </li>
             <li>
+                <a href="{{ url('/admin/categorias') }}"><i class="fas fa-folder-open"></i> Categorias</a>
+            </li>
+            <li>
                 <a href="{{ url('/admin/users') }}"><i class="fas fa-users"></i> Usuarios</a>
             </li>
-            
         </ul>
     </div>
 </div>

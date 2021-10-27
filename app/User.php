@@ -19,7 +19,7 @@ class User extends Authenticatable
         'dni','nombre', 'correo', 'password', 'estado', 'rol_id'
     ];
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     /**
      * The attributes that should be hidden for arrays.

@@ -29,14 +29,13 @@
                         {!! Form::text('nombre', null , ['class' => 'form-control', 'required']) !!}
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     {!! Form::label('descripcion', 'Descripcion', ['class' => 'p5']) !!}
-                    <span class="red-require">✱</span>
-                    <div class="input-group">
-                        {!! Form::text('descripcion', null , ['class' => 'form-control', 'required']) !!}
+                      <div class="input-group">
+                        {!! Form::text('descripcion', null , ['class' => 'form-control']) !!}
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     {!! Form::label('categoria', 'Categoria', ['class' => 'p5']) !!}
                     <span class="red-require">✱</span>
                     <div class="input-group">

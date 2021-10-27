@@ -17,7 +17,7 @@
 
         <div class="inside">
             <table class="table">
-                <thead>
+                <thead class="table-light">
                     <tr>
                         <td>ID</td>
                         <td>DNI</td>
@@ -35,8 +35,20 @@
                         <td>{{ $user->dni }}</td>
                         <td>{{ $user->nombre }}</td>
                         <td>{{ $user->correo }}</td>
-                        <td>{{ $user->estado }}</td>
-                        <td>{{ $user->rol_id }}</td>
+                        <td> 
+                            @if($user->estado == "1")
+                                <span class="badge bg-success">Activo</span>
+                            @else 
+                                <span class="badge bg-danger">No activo</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if($user->rol_id == "1")
+                                <span class="badge bg-light text-dark">Administrador</span>
+                            @else 
+                                <span class="badge bg-light text-dark">Usuario</span>
+                            @endif
+                        </td>
                         <td>
                             <div class="opts">
                                 <a href="{{ url('/admin/users/'.$user->id.'/edit') }}" data-toggle="tooltip" data-placement="top" title="Editar"><i class="far fa-edit"></i></a>

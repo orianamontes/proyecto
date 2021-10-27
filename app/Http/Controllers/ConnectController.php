@@ -37,7 +37,7 @@ class ConnectController extends Controller
         if ($validator->fails()) :
             return back()->withErrors($validator)->with('message', 'Se ha producido un error')->with('typealert', 'danger');
         else :
-            if (Auth::attempt(['correo' => $request->input('correo'), 'password' => $request->input('password')], true)) : // redireccionar segun rol 'rol_id' => 1 o 2
+            if (Auth::attempt(['correo' => $request->input('correo'), 'password' => $request->input('password'), 'rol_id' => 1], true)) : // redireccionar segun rol 'rol_id' => 1 o 2
                 return redirect('/');
                 
             else :
