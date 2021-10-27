@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('nombre',100);
             $table->string('descripcion',100);
             $table->decimal('precio',8,2);
-            $table->float('stock');
+            $table->integer('stock');
             $table->string('imagen');
             $table->boolean('estado')->default(1);            
             $table->unsignedBigInteger('categoria_id');

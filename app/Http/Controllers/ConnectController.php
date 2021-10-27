@@ -35,7 +35,7 @@ class ConnectController extends Controller
 
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) :
-            return back()->withErrors($validator)->with('message', 'Se ha producido un error')->with('typealert', 'danger');
+            return back()->withErrors($validator)->with('message', 'Se ha producido un error')->with('typealert', 'danger')->withInput();
         else :
             if (Auth::attempt(['correo' => $request->input('correo'), 'password' => $request->input('password'), 'rol_id' => 1], true)) : // redireccionar segun rol 'rol_id' => 1 o 2
                 return redirect('/');
@@ -72,7 +72,7 @@ class ConnectController extends Controller
 
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) :
-            return back()->withErrors($validator)->with('message', 'Se ha producido un error')->with('typealert', 'danger');
+            return back()->withErrors($validator)->with('message', 'Se ha producido un error')->with('typealert', 'danger')->withInput();
         else :
             $user = new User;
             $user->nombre = e($request->input('nombre'));

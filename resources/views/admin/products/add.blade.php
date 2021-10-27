@@ -19,7 +19,7 @@
         </div>
 
         <div class="inside">
-            {!! Form::open(['url' => '/admin/product/add']) !!}
+            {!! Form::open(['url' => '/admin/product/add', 'files'=> true]) !!}
 
             <div class="row">
                 <div class="col-md-4">
@@ -39,7 +39,7 @@
                     {!! Form::label('categoria', 'Categoria', ['class' => 'p5']) !!}
                     <span class="red-require">✱</span>
                     <div class="input-group">
-                        {{-- {!! Form::text('categoria', null , ['class' => 'form-control', 'required']) !!} --}}
+                        {!! Form::select('categoria', $cat, 0 , ['class' => 'form-select', 'required']) !!}
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                     {!! Form::label('imagen', 'Imagen de referencia', ['class' => 'p5']) !!}
                     <span class="red-require">✱</span>
                     <div class="input-group">
-                        {!! Form::file('imagen',  ['class' => 'form-control']) !!}
+                        {!! Form::file('imagen',  ['class' => 'form-control', 'accept' => 'image/*']) !!}
                     </div>
                 </div>
             </div>
