@@ -63,6 +63,9 @@
                         </td>
                     </tr>
                     @endforeach
+                    <tr>
+                        <td colspan="9"></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

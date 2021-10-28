@@ -19,7 +19,7 @@ class ProductController extends Controller
 
     public function getHome()
     {
-        $products = Product::orderBy('id', 'asc')->paginate(10);
+        $products = Product::orderBy('id', 'asc')->paginate(20);
         $data = ['products' => $products];
         return view('admin.products.home', $data);
     }
@@ -119,6 +119,8 @@ class ProductController extends Controller
             return back()->withErrors($validator)->with('message', 'Se ha producido un error')->with('typealert', 'danger')->withInput();
         else :
             $p = Product::find($id);
+            $ipp = $p->imagen_ruta;
+            $ip = $p->imagen;
             $p->nombre = e($request->input('nombre'));
             $p->descripcion = e($request->input('descripcion'));
             $p->precio = e($request->input('precio'));
@@ -146,6 +148,8 @@ class ProductController extends Controller
                         $constrain->upsize();
                     });
                     $img->save($upload_path . '/' . $path . '/t_' . $filename);
+                    unlink($upload_path.'/'.$ipp.'/'.$ip);
+                    unlink($upload_path.'/'.$ipp.'/t_'.$ip);
                 endif;
                 return redirect('/admin/products')->with('message', 'Producto modificado con éxito')->with('typealert', 'success');
             endif;
