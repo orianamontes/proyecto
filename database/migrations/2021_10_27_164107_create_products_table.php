@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->decimal('precio',8,2);
             $table->integer('stock');
             $table->string('imagen');
+            $table->string('imagen_ruta');
             $table->boolean('estado')->default(1);            
             $table->unsignedBigInteger('categoria_id');
 

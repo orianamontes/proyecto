@@ -39,6 +39,7 @@
                             <tr>
                                 <td>ID</td>
                                 <td>NOMBRE</td>
+                                <td>ESTADO</td>
                                 <td width="150"></td>
                             </tr>
                         </thead>
@@ -47,6 +48,13 @@
                             <tr>
                                 <td>{{ $categoria->id }}</td>
                                 <td>{{ $categoria->nombre }}</td>
+                                <td>
+                                    @if($categoria->estado == "1")
+                                    <span class="badge bg-success">Activo</span>
+                                    @else
+                                    <span class="badge bg-danger">No activo</span>
+                                    @endif
+                                </td>
                                 <td>
                                     <div class="opts">
                                         <a href="{{ url('/admin/categorias/'.$categoria->id.'/edit') }}"

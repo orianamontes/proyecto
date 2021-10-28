@@ -66,6 +66,7 @@ class CategoriaController extends Controller
         else :
             $c = Categoria::find($id);
             $c->nombre = e($request->input('nombre'));
+            $c->estado = e($request->input('estado'));
             if ($c->save()) :
                 return redirect('/admin/categorias')->with('message', 'Categoria modificada con éxito')->with('typealert', 'success');
             endif;
@@ -75,7 +76,8 @@ class CategoriaController extends Controller
     public function getCategoriaDelete($id)
     {
         $c = Categoria::find($id);
-        if ($c->delete()) :
+        $c->estado = "0";
+        if ($c->save()) :
             return redirect('/admin/categorias')->with('message', 'Categoria borrada con éxito')->with('typealert', 'success');
         endif;
     }
