@@ -31,7 +31,7 @@
                         class="fas fa-folder-open"></i> Categorias</a>
             </li>
             <li>
-                <a href="{{ url('/admin/users') }}" class="lk-user_list"><i class=" fas fa-users"></i> Usuarios</a>
+                <a href="{{ url('/admin/users') }}" class="lk-user_list lk-user_add lk-user_edit lk-user_delete"><i class=" fas fa-users"></i> Usuarios</a>
             </li>
         </ul>
     </div>

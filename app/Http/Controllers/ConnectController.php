@@ -14,7 +14,7 @@ class ConnectController extends Controller
     {
         $this->middleware('guest')->except(['getLogout']);
     }
-    
+
     public function getLogin()
     {
         return view('connect.login');
@@ -37,11 +37,14 @@ class ConnectController extends Controller
         if ($validator->fails()) :
             return back()->withErrors($validator)->with('message', 'Se ha producido un error')->with('typealert', 'danger')->withInput();
         else :
-            if (Auth::attempt(['correo' => $request->input('correo'), 'password' => $request->input('password'), 'rol_id' => 1], true)) : // redireccionar segun rol 'rol_id' => 1 o 2
-                return redirect('/');
-                
+            if (Auth::attempt(['correo' => $request->input('correo'), 'password' => $request->input('password')], true)) : // redirecciona segun rol 'rol_id' => 1 o 2, pero falta validar el estado inactivo (0)
+                if (Auth::user()->rol_id == '1') :
+                    return redirect('/admin');
+                else :
+                    return redirect('/');
+                endif;
             else :
-                return back()->with('message', 'Credenciales incorrectas o no existen.')->with('typealert', 'danger');
+                return back()->with('message', 'Credenciales incorrectas o no existen.')->with('typealert', 'danger')->withInput();
             endif;
         endif;
     }
@@ -51,11 +54,12 @@ class ConnectController extends Controller
         return view('connect.register');
     }
 
+    // solo se registraran usuarios de tipo usuario
     public function postRegister(Request $request)
     {
         $rules = [
             'nombre' => 'required',
-            'dni' => 'required|integer',
+            'dni' => 'required',
             'correo' => 'required|email|unique:App\User,correo',
             'password' => 'required'
         ];
@@ -63,7 +67,6 @@ class ConnectController extends Controller
         $messages = [
             'nombre.required' => 'Ingrese su nombre',
             'dni.required' => 'Ingrese su DNI',
-            'dni.integer' => 'DNI inválido',
             'correo.required' => 'Ingrese su correo electrónico',
             'correo.email' => 'El formato del correo es inválido',
             'correo.unique' => 'Ya existe una cuenta con este correo',
@@ -79,7 +82,7 @@ class ConnectController extends Controller
             $user->dni = e($request->input('dni'));
             $user->correo = $request->input('correo');
             $user->password = Hash::make($request->input('password'));
-            $user->rol_id = 1;
+            $user->rol_id = 2;
 
             if ($user->save()) :
                 return redirect('/login')->with('message', 'Usuario creado con éxito, inicie sesión')->with('typealert', 'success');

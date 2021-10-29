@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ContentController@getHome');
+Route::get('/us', 'ContentController@getUs');
 
 //router Auth
 Route::get('/login','ConnectController@getLogin')->name('login');

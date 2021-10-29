@@ -3,6 +3,11 @@
 Route::prefix('/admin')->group(function(){
     Route::get('/', 'Admin\DashboardController@getDashboard')->name('dashboard');
     Route::get('/users', 'Admin\UserController@getUsers')->name('user_list');
+    Route::get('/user/add', 'Admin\UserController@getUserAdd')->name('user_add');
+    Route::post('/user/add', 'Admin\UserController@postUserAdd')->name('user_add'); 
+    Route::get('/users/{id}/edit', 'Admin\UserController@getUserEdit')->name('user_edit'); 
+    Route::post('/users/{id}/edit', 'Admin\UserController@postUserEdit')->name('user_edit'); 
+    Route::get('/users/{id}/delete', 'Admin\UserController@getUserDelete')->name('user_delete');
     
     //modulo Productos
     Route::get('/products', 'Admin\ProductController@getHome')->name('products');
